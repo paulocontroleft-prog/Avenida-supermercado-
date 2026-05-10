@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avenida Supermercado – Qualidade e Bom Atendimento</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,900;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#1a8a3c;--green-dark:#0d5224;--green-light:#22b04a;
+  --gold:#c8a865;--gold-light:#e2c98a;--white:#fff;
+  --bg:#f2f5f2;--gray:#e2e8e2;--text:#1a2a1a;--muted:#607060;
+  --red:#d92b2b;--nav-h:68px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--text);}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+
+/* TOP BAR */
+.topbar{background:var(--green-dark);color:rgba(255,255,255,.8);font-size:.78rem;
+  padding:6px 24px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.topbar a{color:var(--gold-light);font-weight:700;}
+.topbar-left{display:flex;align-items:center;gap:16px;}
+
+/* NAV */
+nav{background:var(--green);position:sticky;top:0;z-index:200;
+  box-shadow:0 3px 18px rgba(0,0,0,.28);height:var(--nav-h);}
+.nav-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;
+  justify-content:space-between;height:100%;padding:0 24px;gap:16px;}
+.nav-logo{display:flex;align-items:center;gap:12px;}
+.nav-logo-badge{width:52px;height:52px;background:var(--white);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 3px 10px rgba(0,0,0,.25);flex-shrink:0;}
+.nav-logo-badge svg{width:46px;height:46px;}
+.nav-brand h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.1rem;
+  color:var(--white);line-height:1;letter-spacing:.5px;text-transform:uppercase;}
+.nav-brand span{font-size:.65rem;color:var(--gold-light);letter-spacing:1.5px;
+  text-transform:uppercase;font-weight:400;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{color:rgba(255,255,255,.88);font-size:.85rem;font-weight:600;
+  padding:8px 14px;border-radius:6px;transition:background .15s,color .15s;
+  font-family:'Montserrat',sans-serif;letter-spacing:.3px;}
+.nav-links a:hover{background:rgba(255,255,255,.15);color:#fff;}
+.nav-cta{background:var(--gold)!important;color:var(--green-dark)!important;
+  border-radius:20px!important;padding:8px 18px!important;font-weight:800!important;
+  box-shadow:0 2px 10px rgba(200,168,101,.4);}
+.nav-cta:hover{background:var(--gold-light)!important;}
+.hamburger{display:none;background:none;border:none;cursor:pointer;
+  flex-direction:column;gap:5px;padding:4px;}
+.hamburger span{display:block;width:24px;height:2.5px;background:var(--white);
+  border-radius:2px;transition:all .25s;}
+.mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;
+  background:var(--green-dark);z-index:199;flex-direction:column;padding:12px 0;
+  box-shadow:0 8px 24px rgba(0,0,0,.3);}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:var(--white);padding:14px 24px;font-size:1rem;
+  font-family:'Montserrat',sans-serif;font-weight:600;
+  border-bottom:1px solid rgba(255,255,255,.08);}
+
+/* HERO CAROUSEL */
+.hero{position:relative;overflow:hidden;background:var(--green-dark);}
+.slides{display:flex;transition:transform .55s cubic-bezier(.4,0,.2,1);}
+.slide{min-width:100%;height:380px;display:flex;align-items:center;
+  justify-content:center;position:relative;overflow:hidden;}
+.slide-1{background:linear-gradient(135deg,#0d5224 0%,#1a8a3c 55%,#27c458 100%);}
+.slide-2{background:linear-gradient(135deg,#1a3d0d 0%,#2d7a18 55%,#4db52e 100%);}
+.slide-3{background:linear-gradient(135deg,#3a1200 0%,#8a3e1a 55%,#c85e1a 100%);}
+.slide-content{text-align:center;padding:24px;position:relative;z-index:2;}
+.slide-eyebrow{font-size:.75rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold-light);font-weight:700;margin-bottom:12px;}
+.slide-title{font-family:'Montserrat',sans-serif;font-weight:900;
+  font-size:clamp(1.8rem,5vw,3.2rem);color:var(--white);line-height:1.1;margin-bottom:14px;}
+.slide-title em{font-style:normal;color:var(--gold-light);}
+.slide-sub{color:rgba(255,255,255,.8);font-size:1rem;margin-bottom:22px;}
+.slide-btn{display:inline-block;background:var(--white);color:var(--green-dark);
+  font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;
+  padding:12px 28px;border-radius:30px;letter-spacing:.5px;
+  box-shadow:0 4px 20px rgba(0,0,0,.25);transition:transform .15s,box-shadow .15s;}
+.slide-btn:hover{transform:scale(1.04);box-shadow:0 6px 26px rgba(0,0,0,.3);}
+.slide-deco{position:absolute;right:-40px;top:50%;transform:translateY(-50%);
+  font-size:9rem;opacity:.07;line-height:1;pointer-events:none;}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:10;
+  background:rgba(255,255,255,.18);border:none;color:var(--white);
+  width:42px;height:42px;border-radius:50%;font-size:1.3rem;cursor:pointer;
+  transition:background .15s;backdrop-filter:blur(4px);}
+.carousel-btn:hover{background:rgba(255,255,255,.32);}
+.carousel-prev{left:16px;}
+.carousel-next{right:16px;}
+.carousel-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+  display:flex;gap:7px;}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);
+  cursor:pointer;transition:background .2s,transform .2s;}
+.dot.active{background:var(--white);transform:scale(1.3);}
+
+/* SECTION */
+.section{max-width:1140px;margin:0 auto;padding:56px 24px;}
+.section-hd{display:flex;align-items:center;gap:14px;margin-bottom:32px;}
+.section-hd h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.5rem;
+  color:var(--green-dark);text-transform:uppercase;letter-spacing:.8px;white-space:nowrap;}
+.section-line{flex:1;height:3px;background:linear-gradient(90deg,var(--green),transparent);
+  border-radius:2px;}
+.section-dot{width:36px;height:36px;background:var(--green);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;flex-shrink:0;}
+
+/* OFFERS */
+#ofertasSection{background:#fff;padding:0;}
+#ofertasSection .section{padding:56px 24px;}
+.offers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:18px;}
+.offer-card{background:var(--white);border-radius:16px;padding:0;
+  box-shadow:0 2px 14px rgba(0,80,30,.09);border:2px solid transparent;
+  transition:transform .18s,box-shadow .18s,border-color .18s;
+  overflow:hidden;position:relative;display:flex;flex-direction:column;}
+.offer-card:hover{transform:translateY(-5px);
+  box-shadow:0 10px 32px rgba(0,80,30,.17);border-color:var(--green-light);}
+.offer-img-wrap{width:100%;height:150px;background:var(--bg);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.offer-img-wrap img{width:100%;height:100%;object-fit:cover;}
+.offer-emoji-big{font-size:4rem;line-height:1;}
+.offer-body{padding:14px 14px 16px;flex:1;display:flex;flex-direction:column;}
+.offer-badge{position:absolute;top:10px;left:10px;background:var(--red);color:#fff;
+  font-family:'Montserrat',sans-serif;font-weight:800;font-size:.65rem;
+  padding:4px 10px;border-radius:20px;letter-spacing:.5px;}
+.offer-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.9rem;
+  color:var(--text);margin-bottom:8px;line-height:1.35;}
+.offer-old{font-size:.75rem;color:#aaa;text-decoration:line-through;margin-bottom:2px;}
+.offer-price{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.45rem;
+  color:var(--green);margin-bottom:2px;}
+.offer-unit{font-size:.7rem;color:var(--muted);}
+.delete-btn{background:none;border:none;color:#ccc;font-size:.78rem;cursor:pointer;
+  padding:6px;border-radius:6px;margin-top:auto;
+  transition:color .15s,background .15s;align-self:flex-end;}
+.delete-btn:hover{color:var(--red);background:#fff0f0;}
+.empty-state{grid-column:1/-1;text-align:center;padding:56px 20px;
+  color:var(--muted);background:var(--bg);border-radius:16px;border:2px dashed var(--gray);}
+.empty-state big{display:block;font-size:3rem;margin-bottom:10px;}
+
+/* ADMIN */
+.admin-bar{background:var(--green-dark);padding:20px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.admin-bar p{color:rgba(255,255,255,.7);font-size:.85rem;}
+.admin-bar p strong{color:var(--gold-light);}
+.btn-admin-open{background:var(--gold);color:var(--green-dark);border:none;border-radius:24px;
+  padding:10px 22px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;
+  cursor:pointer;letter-spacing:.5px;box-shadow:0 3px 14px rgba(200,168,101,.35);
+  transition:transform .15s,background .15s;}
+.btn-admin-open:hover{transform:scale(1.04);background:var(--gold-light);}
+.admin-panel{background:#fff;border-top:4px solid var(--gold);
+  padding:28px 24px 24px;display:none;}
+.admin-panel.open{display:block;animation:slideDown .3s ease;}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+.admin-panel h4{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;
+  color:var(--green-dark);margin-bottom:20px;text-transform:uppercase;letter-spacing:.8px;}
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+  gap:14px;margin-bottom:18px;}
+.admin-grid label{display:block;font-size:.73rem;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;}
+.admin-grid input,.admin-grid select{width:100%;padding:10px 12px;
+  border:1.5px solid var(--gray);border-radius:8px;font-family:'Lato',sans-serif;
+  font-size:.9rem;color:var(--text);background:var(--bg);outline:none;transition:border-color .15s;}
+.admin-grid input:focus,.admin-grid select:focus{border-color:var(--green);background:#fff;}
+.upload-zone{border:2px dashed var(--green-light);border-radius:10px;background:#f0faf3;
+  text-align:center;padding:16px 10px;cursor:pointer;position:relative;
+  transition:background .15s,border-color .15s;}
+.upload-zone:hover{background:#e0f5e8;border-color:var(--green);}
+.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.upload-zone .uico{font-size:1.8rem;display:block;margin-bottom:4px;}
+.upload-zone .ulabel{font-size:.78rem;font-weight:700;color:var(--green-dark);
+  text-transform:uppercase;letter-spacing:.4px;}
+.upload-zone .uhint{font-size:.68rem;color:var(--muted);margin-top:2px;}
+.upload-preview{width:64px;height:64px;object-fit:cover;border-radius:8px;
+  border:2px solid var(--green-light);display:none;margin:8px auto 0;}
+.upload-preview.vis{display:block;}
+.admin-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-green{background:linear-gradient(135deg,var(--green),var(--green-light));color:#fff;
+  border:none;border-radius:8px;padding:11px 22px;font-family:'Montserrat',sans-serif;
+  font-weight:700;font-size:.85rem;cursor:pointer;
+  box-shadow:0 3px 12px rgba(0,120,50,.28);transition:transform .14s,box-shadow .14s;}
+.btn-green:hover{transform:scale(1.03);box-shadow:0 5px 18px rgba(0,120,50,.38);}
+.btn-outline-red{background:transparent;color:var(--red);border:1.5px solid var(--red);
+  border-radius:8px;padding:11px 18px;font-family:'Montserrat',sans-serif;font-weight:700;
+  font-size:.85rem;cursor:pointer;transition:background .14s,color .14s;}
+.btn-outline-red:hover{background:var(--red);color:#fff;}
+
+/* HISTÓRIA */
+#historiaSection{background:var(--green-dark);}
+#historiaSection .section{padding:64px 24px;}
+.historia-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.historia-tag{font-size:.75rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold-light);font-weight:700;margin-bottom:10px;}
+.historia-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2rem;
+  color:var(--white);line-height:1.2;margin-bottom:18px;}
+.historia-title em{font-style:normal;color:var(--gold-light);}
+.historia-body{color:rgba(255,255,255,.78);line-height:1.75;font-size:.95rem;}
+.historia-img{background:linear-gradient(135deg,rgba(255,255,255,.07),rgba(255,255,255,.03));
+  border-radius:20px;border:1px solid rgba(255,255,255,.12);height:280px;
+  display:flex;align-items:center;justify-content:center;font-size:8rem;}
+
+/* INFO */
+#infoSection{background:var(--bg);}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;}
+.info-card{background:var(--white);border-radius:16px;padding:24px 20px;
+  box-shadow:0 2px 12px rgba(0,80,30,.08);display:flex;align-items:flex-start;gap:14px;}
+.info-icon{width:44px;height:44px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--green),var(--green-light));
+  border-radius:12px;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:1.2rem;}
+.info-card strong{display:block;font-family:'Montserrat',sans-serif;font-weight:700;
+  font-size:.82rem;color:var(--green-dark);text-transform:uppercase;
+  letter-spacing:.4px;margin-bottom:4px;}
+.info-card span{font-size:.88rem;color:var(--muted);line-height:1.5;}
+.info-card a{color:var(--green);font-weight:700;}
+
+/* FOOTER */
+footer{background:#06301a;}
+.footer-top{max-width:1140px;margin:0 auto;padding:48px 24px 32px;
+  display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:36px;}
+.footer-brand .fb-logo{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.footer-brand .fb-logo span{font-family:'Montserrat',sans-serif;font-weight:900;
+  font-size:1.2rem;color:#fff;text-transform:uppercase;}
+.footer-brand p{color:rgba(255,255,255,.55);font-size:.85rem;line-height:1.7;max-width:280px;}
+.footer-socials{display:flex;gap:10px;margin-top:18px;}
+.soc-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:.95rem;
+  transition:background .15s;}
+.soc-btn:hover{background:var(--gold);}
+.footer-col h4{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;
+  color:var(--gold-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;}
+.footer-col a{display:block;color:rgba(255,255,255,.6);font-size:.85rem;
+  margin-bottom:8px;transition:color .14s;}
+.footer-col a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);text-align:center;
+  padding:18px 24px;color:rgba(255,255,255,.35);font-size:.78rem;letter-spacing:.3px;}
+.footer-bottom strong{color:var(--gold-light);}
+
+/* FAB */
+.fab-whats{position:fixed;bottom:26px;right:26px;z-index:999;
+  width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;
+  box-shadow:0 4px 18px rgba(37,211,102,.5);animation:pulseW 2.5s infinite;}
+@keyframes pulseW{
+  0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.5);}
+  50%{box-shadow:0 4px 32px rgba(37,211,102,.8);}
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .topbar{display:none;}
+  .slide{height:280px;}
+  .historia-inner{grid-template-columns:1fr;}
+  .historia-img{display:none;}
+  .footer-top{grid-template-columns:1fr;}
+}
+@media(max-width:480px){
+  .slide-title{font-size:1.6rem;}
+  .offers-grid{grid-template-columns:repeat(2,1fr);}
+  .admin-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span>📍 Av. Alcindo Barbosa, 924 – Parque da Imprensa, Mogi Mirim/SP</span>
+    <span>⏰ Seg–Sáb 7h–20h · Dom 7h–13h</span>
+  </div>
+  <a href="tel:1938052005">📞 (19) 3805-2005</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-badge">
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="40" cy="51" rx="36" ry="25" fill="#1a8a3c"/>
+          <ellipse cx="40" cy="51" rx="36" ry="25" fill="none" stroke="white" stroke-width="1.5"/>
+          <path d="M10 59 Q40 67 70 59 L72 63 Q40 73 8 63 Z" fill="#c8a865"/>
+          <path d="M10 59 Q40 65 70 59 L70 61 Q40 67 10 61 Z" fill="#e2c98a"/>
+          <text x="40" y="51" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="13" fill="white" letter-spacing="1">AVENIDA</text>
+          <text x="40" y="62" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-weight="700" font-size="6.5" fill="white" letter-spacing="0.8">SUPERMERCADO</text>
+          <path d="M26 19 L28.5 19 L31 29 L51 29 L53 21 L30 21" stroke="#2a2a2a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M26 19 L24 14" stroke="#2a2a2a" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="34" cy="32.5" r="2.5" fill="#2a2a2a"/>
+          <circle cx="47" cy="32.5" r="2.5" fill="#2a2a2a"/>
+          <path d="M36 23 L34 27" stroke="#c8a865" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M39 22 L37 26" stroke="#c8a865" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M42 22 L40 26" stroke="#c8a865" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="nav-brand">
+        <h1>Avenida Supermercado</h1>
+        <span>Qualidade e Bom Atendimento</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#inicio">Início</a>
+      <a href="#ofertas">Ofertas</a>
+      <a href="#historia">Nossa História</a>
+      <a href="#info">Contato</a>
+      <a href="https://wa.me/5519998133027" class="nav-cta">🛒 Compre pelo WhatsApp</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#inicio" onclick="toggleMenu()">Início</a>
+  <a href="#ofertas" onclick="toggleMenu()">Ofertas</a>
+  <a href="#historia" onclick="toggleMenu()">Nossa História</a>
+  <a href="#info" onclick="toggleMenu()">Contato</a>
+  <a href="https://wa.me/5519998133027" style="color:var(--gold-light)">🛒 Compre pelo WhatsApp</a>
+</div>
+
+<!-- HERO CAROUSEL -->
+<section class="hero" id="inicio">
+  <div class="slides" id="slides">
+    <div class="slide slide-1">
+      <div class="slide-deco">🛒</div>
+      <div class="slide-content">
+        <div class="slide-eyebrow">Avenida Supermercado · Mogi Mirim</div>
+        <h2 class="slide-title">Sua compra<br><em>entregue na sua casa</em></h2>
+        <p class="slide-sub">Qualidade e bom atendimento desde sempre</p>
+        <a href="https://wa.me/5519998133027" class="slide-btn">Peça pelo WhatsApp 🚚</a>
+      </div>
+    </div>
+    <div class="slide slide-2">
+      <div class="slide-deco">🏷️</div>
+      <div class="slide-content">
+        <div class="slide-eyebrow">Promoções da Semana</div>
+        <h2 class="slide-title">Ofertas <em>incríveis</em><br>todo dia</h2>
+        <p class="slide-sub">Produtos frescos com os melhores preços</p>
+        <a href="#ofertas" class="slide-btn">Ver Ofertas ↓</a>
+      </div>
+    </div>
+    <div class="slide slide-3">
+      <div class="slide-deco">📍</div>
+      <div class="slide-content">
+        <div class="slide-eyebrow">Av. Alcindo Barbosa, 924 – Parque da Imprensa</div>
+        <h2 class="slide-title">Perto de <em>você</em><br>sempre!</h2>
+        <p class="slide-sub">Ligue: (19) 3805-2005 · Seg–Sáb 7h–20h</p>
+        <a href="https://maps.app.goo.gl/Pg7YfitKdGP3Ub5w5" target="_blank" class="slide-btn">Como Chegar 📍</a>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-btn carousel-prev" onclick="moveSlide(-1)">&#8249;</button>
+  <button class="carousel-btn carousel-next" onclick="moveSlide(1)">&#8250;</button>
+  <div class="carousel-dots" id="dots"></div>
+</section>
+
+<!-- OFFERS SECTION -->
+<section id="ofertasSection">
+  <div class="admin-bar">
+    <p><strong>⚙️ Área do Administrador</strong> – Gerencie as ofertas exibidas no site</p>
+    <button class="btn-admin-open" onclick="toggleAdmin()">✏️ Gerenciar Ofertas e Preços</button>
+  </div>
+  <div class="admin-panel" id="adminPanel">
+    <h4>➕ Adicionar Nova Oferta</h4>
+    <div class="admin-grid">
+      <div style="grid-column:1/-1">
+        <label>Foto do Produto</label>
+        <div class="upload-zone" onclick="document.getElementById('f-img').click()">
+          <input type="file" id="f-img" accept="image/*" onchange="previewImg(event)" onclick="event.stopPropagation()"/>
+          <span class="uico">📷</span>
+          <div class="ulabel">Clique para escolher uma foto</div>
+          <div class="uhint">JPG, PNG ou WEBP · máx. 5 MB</div>
+          <img class="upload-preview" id="f-img-preview" src="" alt="preview"/>
+        </div>
+      </div>
+      <div>
+        <label>Emoji (se não usar foto)</label>
+        <input type="text" id="f-emoji" placeholder="🍎" maxlength="4" value="🛍️"/>
+      </div>
+      <div>
+        <label>Nome do Produto *</label>
+        <input type="text" id="f-name" placeholder="Ex: Arroz Branco 5kg"/>
+      </div>
+      <div>
+        <label>Preço Antigo (opcional)</label>
+        <input type="text" id="f-old" placeholder="Ex: 24,90"/>
+      </div>
+      <div>
+        <label>Preço Atual *</label>
+        <input type="text" id="f-price" placeholder="Ex: 19,90"/>
+      </div>
+      <div>
+        <label>Unidade</label>
+        <input type="text" id="f-unit" placeholder="Ex: por kg · unid · pct"/>
+      </div>
+      <div>
+        <label>Destaque</label>
+        <select id="f-badge">
+          <option value="">Nenhum</option>
+          <option value="OFERTA">OFERTA</option>
+          <option value="NOVO">NOVO</option>
+          <option value="LEVE+PAGUE-">LEVE + PAGUE -</option>
+          <option value="IMPERDÍVEL">IMPERDÍVEL</option>
+          <option value="ESPECIAL">ESPECIAL</option>
+        </select>
+      </div>
+    </div>
+    <div class="admin-actions">
+      <button class="btn-green" onclick="addOffer()">✅ Adicionar Oferta</button>
+      <button class="btn-outline-red" onclick="clearOffers()">🗑️ Limpar Todas</button>
+    </div>
+  </div>
+  <div class="section" id="ofertas">
+    <div class="section-hd">
+      <div class="section-dot">🏷️</div>
+      <h2>Ofertas da Semana</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="offers-grid" id="offersGrid"></div>
+  </div>
+</section>
+
+<!-- NOSSA HISTÓRIA -->
+<section id="historiaSection">
+  <div class="section" id="historia">
+    <div class="historia-inner">
+      <div>
+        <div class="historia-tag">Sobre Nós</div>
+        <h2 class="historia-title">Qualidade e <em>bom atendimento</em> acima de tudo</h2>
+        <p class="historia-body">
+          O Avenida Supermercado nasceu com o propósito de servir bem os moradores do Parque da Imprensa e toda a região de Mogi Mirim. Nossa missão é simples: oferecer produtos frescos e de qualidade com preços justos e um atendimento que faz você se sentir em casa.<br><br>
+          Seja na loja ou entregando na sua porta, o Avenida está sempre perto de você. <em style="color:var(--gold-light);font-style:normal;font-weight:700;">Sua compra entregue na sua casa</em> é mais do que um serviço — é o nosso compromisso.
+        </p>
+      </div>
+      <div class="historia-img">🛒</div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO / CONTATO -->
+<section id="infoSection">
+  <div class="section" id="info">
+    <div class="section-hd">
+      <div class="section-dot">📍</div>
+      <h2>Informações &amp; Contato</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon">📍</div>
+        <div>
+          <strong>Endereço</strong>
+          <span>Av. Alcindo Barbosa, 924<br>Parque da Imprensa – Mogi Mirim/SP<br>CEP 13806-310</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">📞</div>
+        <div>
+          <strong>Telefone</strong>
+          <span><a href="tel:1938052005">(19) 3805-2005</a><br>Ligue e faça seu pedido!</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🚚</div>
+        <div>
+          <strong>Delivery</strong>
+          <span>Entregamos na sua casa!<br><a href="https://wa.me/5519998133027">Peça pelo WhatsApp</a></span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">⏰</div>
+        <div>
+          <strong>Horário</strong>
+          <span>Seg a Sáb: 7h – 20h<br>Dom: 7h – 13h</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="fb-logo">
+        <svg width="38" height="38" viewBox="0 0 80 80" fill="none">
+          <ellipse cx="40" cy="51" rx="36" ry="25" fill="#1a8a3c"/>
+          <text x="40" y="51" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="13" fill="white" letter-spacing="1">AVENIDA</text>
+          <text x="40" y="62" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-weight="700" font-size="6.5" fill="white" letter-spacing="0.8">SUPERMERCADO</text>
+        </svg>
+        <span>Avenida Supermercado</span>
+      </div>
+      <p>Sua melhor experiência de compras em Mogi Mirim. Qualidade, confiança e os melhores preços perto de você.</p>
+      <div class="footer-socials">
+        <a class="soc-btn" href="https://wa.me/5519998133027" title="WhatsApp">💬</a>
+        <a class="soc-btn" href="#" title="Instagram">📸</a>
+        <a class="soc-btn" href="#" title="Facebook">👍</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <a href="#inicio">Início</a>
+      <a href="#ofertas">Ofertas da Semana</a>
+      <a href="#historia">Nossa História</a>
+      <a href="#info">Contato &amp; Horário</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <a href="tel:1938052005">📞 (19) 3805-2005</a>
+      <a href="https://wa.me/5519998133027">💬 WhatsApp</a>
+      <a href="#info">📍 Av. Alcindo Barbosa, 924</a>
+      <a href="#info">Parque da Imprensa – Mogi Mirim/SP</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 · <strong>Avenida Supermercado</strong> · Qualidade e Bom Atendimento · Todos os direitos reservados.
+  </div>
+</footer>
+
+<!-- FAB WhatsApp -->
+<a class="fab-whats" href="https://wa.me/5519998133027" title="Fale pelo WhatsApp">💬</a>
+
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+/* FIREBASE CONFIG */
+const firebaseConfig = {
+  apiKey: "AIzaSyAnVzDZhjo_8_TqHzm3WGK8vFtN7o74rRM",
+  authDomain: "avenida-supermercado-2c9a4.firebaseapp.com",
+  projectId: "avenida-supermercado-2c9a4",
+  storageBucket: "avenida-supermercado-2c9a4.firebasestorage.app",
+  messagingSenderId: "593537981240",
+  appId: "1:593537981240:web:9d345b89c4e77fd205ffcd"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const offersCol = collection(db, 'ofertas');
+
+/* CAROUSEL */
+let cur=0,total=3;
+const slidesEl=document.getElementById('slides');
+const dotsEl=document.getElementById('dots');
+function buildDots(){
+  dotsEl.innerHTML='';
+  for(let i=0;i<total;i++){
+    const d=document.createElement('div');
+    d.className='dot'+(i===0?' active':'');
+    d.onclick=()=>goSlide(i);
+    dotsEl.appendChild(d);
+  }
+}
+function goSlide(n){
+  cur=(n+total)%total;
+  slidesEl.style.transform=`translateX(-${cur*100}%)`;
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
+}
+function moveSlide(dir){goSlide(cur+dir);}
+buildDots();
+setInterval(()=>moveSlide(1),4500);
+
+/* MOBILE MENU */
+window.toggleMenu=function(){document.getElementById('mobileMenu').classList.toggle('open');}
+
+/* ADMIN */
+window.toggleAdmin=function(){document.getElementById('adminPanel').classList.toggle('open');}
+
+/* RENDER */
+function render(offers){
+  const g=document.getElementById('offersGrid');
+  if(!offers.length){
+    g.innerHTML='<div class="empty-state"><big>🛒</big>Nenhuma oferta cadastrada.<br>Use o painel acima para adicionar.</div>';
+    return;
+  }
+  g.innerHTML=offers.map(o=>`
+    <div class="offer-card">
+      ${o.badge?`<div class="offer-badge">${o.badge}</div>`:''}
+      <div class="offer-img-wrap">
+        ${o.image?`<img src="${o.image}" alt="${o.name}"/>`:`<span class="offer-emoji-big">${o.emoji}</span>`}
+      </div>
+      <div class="offer-body">
+        <div class="offer-name">${o.name}</div>
+        ${o.oldPrice?`<div class="offer-old">R$ ${o.oldPrice}</div>`:''}
+        <div class="offer-price">R$ ${o.price}</div>
+        <div class="offer-unit">${o.unit}</div>
+        <button class="delete-btn" onclick="del('${o.id}')">✕ remover</button>
+      </div>
+    </div>`).join('');
+}
+
+/* ESCUTA TEMPO REAL — atualiza para todos os visitantes automaticamente */
+onSnapshot(query(offersCol, orderBy('createdAt','asc')), snap => {
+  const offers = snap.docs.map(d=>({id:d.id,...d.data()}));
+  render(offers);
+});
+
+/* IMAGEM */
+let imgB64='';
+window.previewImg=function(e){
+  const f=e.target.files[0];if(!f)return;
+  if(f.size>5*1024*1024){alert('Imagem maior que 5MB!');return;}
+  const r=new FileReader();
+  r.onload=ev=>{imgB64=ev.target.result;
+    const p=document.getElementById('f-img-preview');p.src=imgB64;p.classList.add('vis');};
+  r.readAsDataURL(f);
+}
+
+/* ADICIONAR */
+window.addOffer=async function(){
+  const name=document.getElementById('f-name').value.trim();
+  const price=document.getElementById('f-price').value.trim();
+  if(!name||!price){alert('Preencha Nome e Preço!');return;}
+  const btn=document.querySelector('.btn-green');
+  btn.disabled=true;btn.textContent='Salvando...';
+  try{
+    await addDoc(offersCol,{
+      emoji:document.getElementById('f-emoji').value.trim()||'🛍️',
+      name,
+      oldPrice:document.getElementById('f-old').value.trim(),
+      price,
+      unit:document.getElementById('f-unit').value.trim(),
+      badge:document.getElementById('f-badge').value,
+      image:imgB64,
+      createdAt: Date.now()
+    });
+    ['f-name','f-old','f-price','f-unit'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('f-emoji').value='🛍️';
+    document.getElementById('f-badge').value='';
+    document.getElementById('f-img').value='';
+    const p=document.getElementById('f-img-preview');p.src='';p.classList.remove('vis');
+    imgB64='';
+  }catch(err){alert('Erro ao salvar: '+err.message);}
+  btn.disabled=false;btn.textContent='✅ Adicionar Oferta';
+}
+
+/* REMOVER */
+window.del=async function(id){
+  if(!confirm('Remover esta oferta?'))return;
+  try{ await deleteDoc(doc(db,'ofertas',id)); }
+  catch(err){ alert('Erro ao remover: '+err.message); }
+}
+
+/* LIMPAR TODAS */
+window.clearOffers=async function(){
+  if(!confirm('Remover TODAS as ofertas?'))return;
+  const snap=await getDocs(offersCol);
+  await Promise.all(snap.docs.map(d=>deleteDoc(doc(db,'ofertas',d.id))));
+}
+
+</script>
+</body>
+</html>
