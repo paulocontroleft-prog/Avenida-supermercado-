@@ -359,9 +359,9 @@ footer{background:#06301a;}
 <!-- OFFERS SECTION -->
 <section id="ofertasSection">
 
-  <!-- BOTÃO OCULTO ADMIN (canto inferior esquerdo) -->
-  <div style="text-align:right;padding:8px 24px 0;background:transparent;">
-    <button onclick="openAdminLogin()" style="background:none;border:none;color:transparent;font-size:.6rem;cursor:pointer;user-select:none;" title="">⚙</button>
+  <!-- BOTÃO ADMIN -->
+  <div style="text-align:right;padding:10px 24px 0;background:transparent;">
+    <button onclick="openAdminLogin()" style="background:none;border:1.5px solid #ccc;border-radius:20px;color:#aaa;font-size:.75rem;cursor:pointer;padding:5px 12px;font-family:Montserrat,sans-serif;font-weight:700;letter-spacing:.3px;" title="Admin">🔒 Admin</button>
   </div>
 
   <div class="admin-bar" id="adminBar" style="display:none;">
@@ -650,7 +650,7 @@ function render(offers){
         ${o.oldPrice?`<div class="offer-old">R$ ${o.oldPrice}</div>`:''}
         <div class="offer-price">R$ ${o.price}</div>
         <div class="offer-unit">${o.unit}</div>
-        <button class="delete-btn" onclick="del('${o.id}')">✕ remover</button>
+        ${sessionStorage.getItem('adminAuth')==='1'?`<button class="delete-btn" onclick="del('${o.id}')">✕ remover</button>`:''}
       </div>
     </div>`).join('');
 }
